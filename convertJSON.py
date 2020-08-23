@@ -10,7 +10,12 @@ for dir_name in dir_list :
         with open(f'{dir_name}'+'/'+'AppImageInfo.json') as f:
             data = json.load(f)
 
-        results_sub_dir = os.getcwd() + '/results/' + f'{dir_name}'
+    except :
+        print(f"Skipped '{dir_name} folder' - does not have 'AppImageInfo.json' ")
+        print("------------------------------------")
+
+    try:
+        results_sub_dir = os.getcwd() + '/results/' + f'{data["id"]}'
 
         new_data = {
             "file" : {
@@ -29,8 +34,10 @@ for dir_name in dir_list :
         if not os.path.exists(results_sub_dir):
             os.makedirs(results_sub_dir)
 
-        with open('results/'  + f'{dir_name}/' + 'AppImageInfo' + '.json', 'w') as json_file:
+        with open('results/'  + f'{data["id"]}/' + 'AppImageInfo' + '.json', 'w') as json_file:
             json.dump(new_data, json_file, indent = 2)
 
-    except :
-        print(f"Skipped {dir_name} - does not have 'AppImageInfo.json' ")
+    except Exception as e:
+        print("Error folder name is :",dir_name)
+        print("The Error is :",repr(e))
+        print("------------------------------------")
