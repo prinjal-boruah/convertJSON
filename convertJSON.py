@@ -21,7 +21,7 @@ for dir_name in dir_list :
 
         if splitted_id[0] == "appimage":
             len_of_version = len(data['file']['architecture'])
-            slice_upto = 9+1
+            slice_upto = 9+len_of_version+1
             ref_url_last = data['file']["url"].split("/")[-1][:-slice_upto]
             results_sub_dir = os.getcwd() + '/results/' + f'{ref_url_last}'
         else:
