@@ -24,7 +24,9 @@ for dir_name in dir_list :
             slice_upto = 9+len_of_version+1
             ref_url_last = data['file']["url"].split("/")[-1][:-slice_upto]
             results_sub_dir = os.getcwd() + '/results/' + f'{ref_url_last}'
+            id_of_data =  ref_url_last
         else:
+            id_of_data = data['id']
             results_sub_dir = os.getcwd() + '/results/' + f'{data["id"]}'
 
         new_data = {
@@ -34,7 +36,7 @@ for dir_name in dir_list :
                 "size" : data['file']['size'],
                 "type" : data['file']['type'],
                 "referring_url" : data['file']['url'],
-                "id" : data['id'],
+                "id" : id_of_data,
                 "location" : results_sub_dir + '/AppImageInfo' + '.json',
             },
             "release" :
